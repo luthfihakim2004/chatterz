@@ -1,5 +1,14 @@
 #!/bin/bash
 
+# Save the current directory and change to the parent directory
 pushd ..
-Vendor/Binaries/Premake/Linux/premake5 --cc=clang --file=Build.lua gmake2
+
+# Create a build directory if it doesn't exist
+mkdir -p build
+cd build
+
+# Run CMake to generate Makefiles with Clang as the compiler
+cmake -DCMAKE_C_COMPILER=clang -DCMAKE_CXX_COMPILER=clang++ ..
+
+# Return to the original directory
 popd
